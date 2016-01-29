@@ -1,42 +1,75 @@
 # VIM Setup
-Install Go First
-YouCompleteMe requires - -- The build script requires Python version >= 2.6 and < 3.0 
+Install Go{golang} First
+ 
 
 ## VIM
+
+```shell
+
 sudo apt-get install vim
 sudo apt-get install vim-gnome
 
+```
+
+
 ## Vim-Go setup
-Read the documentation first rather than copy and paste and run... if you want to troubleshoot
+Read the documentation first rather than copy and paste and run... if you want to troubleshoot.  
+
 https://github.com/fatih/vim-go
 
-Another 15 minutes worth of reading and watching
+Another 15 minutes worth of reading and watching  
 https://coolaj86.com/articles/getting-started-with-golang-and-vim/
 
 Another one - using neo... for intelli-sense which failed to work but I got
-a sweet color scheme
+a sweet color scheme.  
 
 ## Install pathogen - bundle managment
+
+```shell
+
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-## Install vim-sensible - a set of vim defaults - this might not be needed for golang
+```
+## Install vim-sensible
+A set of vim defaults - this might not be needed for golang
+
+```shell
+
 git clone git://github.com/tpope/vim-sensible.git ~/.vim/bundle/vim-sensible
 
-## Install syntastic - a syntax checker... this might not be needed for golang
+```
+
+## Install syntastic
+A syntax checker... this might not be needed for golang
+
+```shell
 git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
 
+```
+
+
 ## Install airline
+
+```shell
+
 git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
 
+```
 ## Install NeoComplete
+I chose neocomplete over YouCompleteMe.
+
+```shell
+
 $ cd ~/.vim/bundle/
 $ git clone https://github.com/Shougo/neocomplete.vim.git
 $ ls
 neocomplete.vim  syntastic  vim-airline  vim-go  vim-sensible
 
+```
+Validation everything is in the proper place
 
-
+```shell
 Check 
 cd ~/.vim/autoload
 pathogen.vim
@@ -44,12 +77,14 @@ cd
 cd  ~/.vim/bundle; ls
 syntastic  vim-go  vim-sensible
 
-
+```
 
 ## Install YouCompleteMe (requires building)
-Note: YCM for unbuntu says install Vundle - https://github.com/VundleVim/Vundle.vim#about
-/* skipping Vundle, trying another route */
+Note: YCM for unbuntu says install Vundle
+https://github.com/VundleVim/Vundle.vim#about
+>> skipping Vundle, trying another route
 
+```shell
 git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
 cd  ~/.vim/bundle/YouCompleteMe/
 git submodule update --init --recursive
@@ -57,27 +92,39 @@ cd  ~/.vim/bundle/YouCompleteMe/
 -- The build script requires Python version >= 2.6 and < 3.0 
 --Arg!
 
-********************************************************
--- i use anaconda/continium to manage python and all the sci-py stuff
+```
+
+### Workaround for the python versions
+I use Anaconda and this framework makes swithcing pything env easy:  
+(anaconda/continium to manage python and all the sci-py stuff)  
+
+```shell
+
 $ conda create --name snakes python=2.7
 $ source activate snakes
 $ python version
 $ python --version
 Python 2.7.11 :: Continuum Analytics, Inc.
-
-********************************************************
 $ cd  ~/.vim/bundle/YouCompleteMe/
 $ ./install.py 
 
-## When the build is complete and the machine has recovered, go back to py 3.5
+```
+### When the build is complete and the machine has recovered, go back to py 3.5
 $ source deactivate
 discarding /home/cnicholson/anaconda3/envs/snakes/bin from PATH
 
 
-# Edit .vimrc file - Second Version, recommended mappings
+# Edit .vimrc file - Second Version
+Recommended mappings  
+
+```shell
+
 vim ~/.vimrc
 
-" plugins expect bash - not fish, zsh, etc
+```
+
+
+>> " plugins expect bash - not fish, zsh, etc
 set shell=bash
 
 " pathogen will load the other modules
@@ -143,53 +190,11 @@ set viminfo='100,\"2500,:200,%,n~/.viminfo
 " tell vim to display line numbers
 set number
 
-# Open the sample file and run :GoInstallBinaries
-## Make sure $GOPATH is setup correctly before running this
+### Open the sample file and run :GoInstallBinaries
+ Make sure $GOPATH is setup correctly before running this
+
 :GoInstallBinaries
 
 
-
-
-# BACKUP .vimrc
-" plugins expect bash - not fish, zsh, etc
-set shell=bash
- 
-" which key should be the <leader>
-" (\ is the default, but ',' is more common, and easier to reach)
-let mapleader=","
- 
-" pathogen will load the other modules
-execute pathogen#infect()
- 
-" we want to tell the syntastic module when to run
-" we want to see code highlighting and checks when  we open a file
-" but we don't care so much that it reruns when we close the file
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
- 
-" use goimports for formatting
-let g:go_fmt_command = "goimports"
- 
-" turn highlighting on
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
- 
-let g:syntastic_go_checkers = ['go','golint','errcheck']
- 
-" Open go doc in vertical window, horizontal, or tab
-au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
-au Filetype go nnoremap <leader>s :sp <CR>:exe "GoDef"<CR>
-au Filetype go nnoremap <leader>t :tab split <CR>:exe "GoDef"<CR>
- 
-" we also want to get rid of accidental trailing whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
-
-" tell vim to allow you to copy between files, remember your cursor
-" position and other little nice things like that
-set viminfo='100,\"2500,:200,%,n~/.viminfo
- 
-" tell vim to display line numbers
-set number
+# references ...
+Take a look at others .vimrc files on github next time before doing it yourself
