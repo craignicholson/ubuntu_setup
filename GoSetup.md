@@ -3,17 +3,30 @@
 Download Go
 https://golang.org/dl/
 
+
+```shell
 tar -C /usr/local -xzf go1.5.2.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
+```
+// Add this export in the .bashrc file in the home dir
 
-// put this export in the .bashrc file too
+```shell
 
+vi .bashrc
+
+```
 
 # Uninstall go - test this please - cnicholson, need to validate the code
+```shell
 rm -rf ~/usr/local/go
 
 
-# setup env in home, because it's easy that way and all code goes to github now
+```
+# Setup env in home
+Because it's easy that way and all code goes to github now
+
+
+```shell
 
 $ mkdir gocode
 $ export GOPATH=$HOME/gocode
@@ -27,6 +40,10 @@ craignicholson $ mkdir hello
 craignicholson $ cd hello
 hello $ vim hello.go
 
+```
+
+```golang
+
 package main
 
 import (
@@ -37,9 +54,15 @@ func main() {
   fmt.Println("Hello, Craig")
 }
 
+
+```
+
+Save and Exit
+```shell
 :w
 :q
 
+```
 cn hello $ go install
 cn hello $ hello
 cb hello $ Hello, Craig
@@ -62,23 +85,13 @@ export PATH=$PATH:$GOPATH/bin
 $ go install github.com/yourgithubaccount/hello
 
 $ cd 
-$ ls
-anaconda3         gocode        notebook     SystemBuild~   vim-pathogen
-Desktop           Music         Pictures     Templates      VimSetup
-Documents         netcat        Public       testFile.txt   VimSetup~
-Downloads         netcat~       sketchbook   testFile.txt~
-examples.desktop  netcat-0.7.1  SystemBuild  Videos
-
 $ cd gocode/
-$ ls
-bin  pkg  src
-
 $ cd bin
 $ ls
 errcheck  godef      golint        gorename  hello
 gocode    goimports  gometalinter  gotags    oracle
 
-//run the app
+# Run the app
 :~/gocode/bin$ hello
 Hello, Craig
 
