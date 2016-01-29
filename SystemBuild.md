@@ -80,6 +80,10 @@ Remember that you will have to log out and back in for this to take effect!
 
 
 ```
+# GitHub Setup - using https - github recommends this over ssh, but my pwd is huge and complex
+```shell
+git config --global credential.helper 'cache --timeout=86400'
+```
 
 
 # Downloads
