@@ -99,6 +99,11 @@ bash Anaconda3-2.4.1-Linux-x86_64.sh
 ```
 http://conda.pydata.org/docs/test-drive.html#managing-conda
 
+## Updating Anaconda
+```shell
+conda update conda
+conda update anaconda
+```
 
 # Ubuntu Software Center
 Arduino IDE
